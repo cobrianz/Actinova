@@ -1,6 +1,5 @@
-import { Jost } from "next/font/google"; 
+import { Jost } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CursorFollower from "@/components/CursorFollower";
 
@@ -17,10 +16,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={"`${jost.variable} antialiased` 'animated-gradient min-h-screen text-white'"}>
+    <html lang="en" className={jost.variable}>
+      <body className="animated-gradient antialiased text-white min-h-screen relative">
         <CursorFollower />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

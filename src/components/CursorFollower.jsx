@@ -55,13 +55,13 @@ const CursorFollower = () => {
     <>
       <div
         ref={followerRef}
-        className="fixed w-5 h-5 border-2 border-[#6B7280] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-50"
+        className="fixed w-5 h-5 border-2 border-[#7B68EE] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-50"
       />
       {bubbleRefs.map((ref, index) => (
         <div
           key={index}
           ref={ref}
-          className="fixed w-3 h-3 bg-[#6B7280] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
+          className="fixed w-3 h-3 bg-[#7B68EE] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
         />
       ))}
     </>
