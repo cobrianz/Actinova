@@ -74,7 +74,6 @@ export default function Services() {
       ref={sectionRef}
       className="w-full bg-[#0D0F20] text-white py-24 px-6 md:px-12 relative"
     >
-      <CursorFollower />
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl font-bold mb-4">
           We build solutions that scale with you

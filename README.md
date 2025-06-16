@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Actinova - SaaS Platform for API Integration & Software Solutions
+
+## Overview
+
+Actinova is a SaaS platform that provides a wide range of API integration services, automation tools, software solutions, and expert advice to empower businesses and developers. From payment gateways to AI-powered tools, Actinova simplifies software integration and development.
+
+## Features
+
+- Modern responsive UI built with Next.js and Tailwind CSS
+- Component-based architecture
+- API integration templates and code previews
+- Responsive Navbar with mobile support
+- Modular data handling for services and FAQs
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Available Scripts](#available-scripts)
+- [Services Offered](#services-offered)
+- [FAQs](#faqs)
+- [Screenshot](#screenshot)
+- [License](#license)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js v18 or later
+- Git
+
+### Installation
+
+```bash
+git clone https://github.com/yourusername/actinova.git
+cd actinova
+npm install
+```
+
+### Running the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to view the app.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Using Turbopack (experimental)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev --turbo
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+actinova/
+├── app/
+│   ├── layout.js
+│   ├── page.js
+│   ├── services/
+│   ├── about/
+│   └── ...
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── ServiceCard.jsx
+│   ├── ApiCodeShowcase.jsx
+│   └── ...
+├── public/
+│   ├── logo.png
+│   └── screenshots/
+├── styles/
+│   └── globals.css
+├── data/
+│   ├── servicesData.js
+│   └── faqData.js
+├── next.config.js
+└── README.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run start     # Start production server
+```
 
-## Deploy on Vercel
+## Services Offered
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **API Integration**: Mpesa, Stripe, PayPal, OpenAI, and more.
+- **Automation**: Scripts and tools for automating workflows.
+- **Software Development**: Build custom applications or solutions.
+- **AI Agents**: Implement intelligent agents using GPT APIs.
+- **Consultancy**: Expert advice on choosing tools, stack, and best practices.
+- **Email Services**: Nodemailer and transactional email setups.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## FAQs
+
+1. **What is Actinova?**
+   Actinova is a SaaS platform offering streamlined API integrations and software automation solutions for businesses.
+
+2. **Which APIs do you integrate?**
+   We support Mpesa, Stripe, PayPal, OpenAI, Email (SMTP), and other popular services.
+
+3. **Can you help with automation workflows?**
+   Yes, we offer tailored scripts and tools to automate repetitive business tasks.
+
+4. **Do you build full software systems?**
+   Yes, we create end-to-end software solutions including planning, UI/UX, backend, and deployment.
+
+5. **Are your AI agents customizable?**
+   Yes, AI agents built using GPT APIs can be tailored to match your specific business logic.
+
+6. **What platforms do you support?**
+   We support Node.js, Next.js, Express, and can consult for others upon request.
+
+7. **Do you offer ongoing support?**
+   We provide optional support plans and one-time consulting packages.
+
+8. **How can I get started?**
+   Clone the repo, run `npm install`, and browse our templates and tools to get started.
+
+## Screenshot
+
+```md
+![Actinova Screenshot](./public/Screenshot/.png)
+```
+
+## License
+
+This project is licensed under the MIT License.
