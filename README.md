@@ -125,7 +125,7 @@ npm run start     # Start production server
 ## Screenshot
 
 ```md
-(./public/Screenshot.png)
+![Actinova Screenshot](public/Screenshot.png)
 ```
 
 ## License
