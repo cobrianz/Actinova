@@ -12,6 +12,7 @@ import {
   Robot,
   BookOpen,
 } from "@phosphor-icons/react";
+import CursorFollower from "./CursorFollower";
 
 const icons = [Lightning, PuzzlePiece, Code, Cpu, Briefcase, Robot, BookOpen];
 
@@ -71,8 +72,9 @@ export default function Services() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#0D0F20] text-white py-24 px-6 md:px-12"
+      className="w-full bg-[#0D0F20] text-white py-24 px-6 md:px-12 relative"
     >
+      <CursorFollower />
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl font-bold mb-4">
           We build solutions that scale with you
@@ -85,8 +87,8 @@ export default function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col space-y-24 relative">
-        {/* Vertical Line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-zinc-800 flex justify-center align-center">
+        {/* Vertical Line - Hidden on mobile */}
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-zinc-800">
           <div
             ref={fillRef}
             className="absolute top-0 w-[4px] bg-[#7B68EE] transition-all duration-300 ease-in-out"
@@ -103,8 +105,8 @@ export default function Services() {
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              {/* Icon at vertical line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              {/* Icon at vertical line - Hidden on mobile */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <Icon
                   size={28}
                   weight="fill"
