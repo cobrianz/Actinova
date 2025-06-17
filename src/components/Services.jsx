@@ -12,7 +12,6 @@ import {
   Robot,
   BookOpen,
 } from "@phosphor-icons/react";
-import CursorFollower from "./CursorFollower";
 
 const icons = [Lightning, PuzzlePiece, Code, Cpu, Briefcase, Robot, BookOpen];
 

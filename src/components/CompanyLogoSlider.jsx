@@ -15,11 +15,11 @@ export default function CompanyLogoSlider() {
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: "100px", backgroundColor: "#0D0F20" }}
+      style={{ height: "100px" }}
     >
       {/* Left and right fade overlays */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10 bg-gradient-to-r from-[#0D0F20] to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10 bg-gradient-to-l from-[#0D0F20] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 h-full bg-blend-overlay w-24 z-10 bg-gradient-to-r from-[#010109] to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10 bg-gradient-to-l from-[#010109] to-transparent" />
 
       {/* Infinite sliding container */}
       <div className="flex items-center gap-[200px] px-24 w-max animate-marquee">

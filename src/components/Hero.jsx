@@ -5,7 +5,7 @@ import CompanyLogoSlider from "./CompanyLogoSlider";
 
 const Hero = () => {
   return (
-    <section className="w-100% bg-[#0D0F20] text-white min-h-[100vh] py-8">
+    <section className="w-100% bg-[#0D0F20] text-white min-h-[100vh] py-8] hero">
       <Navbar />
 
       <div className="py-24 text-center flex justify-center align-center flex-col max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 gap-12">
