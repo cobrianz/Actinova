@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
@@ -47,6 +46,22 @@ export default function PricingSection() {
     }),
   };
 
+  // Filter only features with true or numeric values for mobile card view
+  const getPlanFeatures = (planName) => {
+    const features = {};
+    comparisonData.forEach((category) => {
+      category.features.forEach((feature) => {
+        const value = feature[planName.toLowerCase()];
+        if (typeof value === "boolean" && value === true) {
+          features[feature.name] = value;
+        } else if (typeof value === "number" && value > 0) {
+          features[feature.name] = value;
+        }
+      });
+    });
+    return features;
+  };
+
   return (
     <motion.section
       initial="hidden"
@@ -61,10 +76,9 @@ export default function PricingSection() {
         variants={fadeUp}
         className="max-w-7xl mx-auto backdrop-blur-md bg-[#0d0f20cc] rounded-xl p-4"
       >
-        {/* Pricing cards section remains unchanged */}
         <motion.div variants={fadeUp} className="text-center mb-16">
-          <h2 className="text-8xl font-bold text-white mb-4">
-            Simple, transparent <br /> pricing
+          <h2 className="text-8xl font-bold text-white mb-4 md:text-6xl sm:text-5xl xs:text-4xl">
+            Simple, transparent <br className="hidden md:block" /> pricing
           </h2>
           <p className="text-xl text-zinc-300 max-w-2xl mx-auto mb-8">
             Choose the perfect plan for your business. Upgrade or downgrade at
@@ -105,14 +119,14 @@ export default function PricingSection() {
                 key={plan.name}
                 variants={fadeUp}
                 custom={index}
-                className="h-full"
+                className="h-full flex justify-center flex-wrap"
               >
                 <Card
                   className={`relative h-full bg-[#0F172A] border border-zinc-700 text-white ${
                     isPopular
                       ? "border-[#7B68EE] shadow-xl scale-105 bg-[#7c68ee44]"
                       : ""
-                  } min-w-[300px]`}
+                  } max-w-[300px]`}
                 >
                   {isPopular && (
                     <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#7B68EE] text-white">
@@ -181,8 +195,7 @@ export default function PricingSection() {
           })}
         </div>
 
-        {/* Modified table section with Tailwind CSS */}
-        <motion.div variants={fadeUp} className="mt-20 overflow-x-auto">
+        <motion.div variants={fadeUp} className="mt-20">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-white mb-4">
               Compare all features
@@ -192,98 +205,135 @@ export default function PricingSection() {
             </p>
           </div>
 
-          <table className="w-full border-collapse bg-[#0F172A] rounded-lg shadow-sm text-white overflow-hidden">
-            <thead className="md:table-header-group hidden">
-              <motion.tr
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={0}
-                className="border-b border-zinc-700"
-              >
-                <th className="text-left p-4 font-semibold text-white bg-[#0F172A]">
-                  Features
-                </th>
-                {pricingData.map((plan) => (
-                  <th
-                    key={plan.name}
-                    className="text-center p-4 font-semibold text-white bg-[#0F172A] min-w-[120px]"
-                    data-label={plan.name}
-                  >
-                    {plan.name}
+          {/* Desktop Table Layout */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full border-collapse bg-[#0F172A] overflow-hidden rounded-lg shadow-sm text-white">
+              <thead>
+                <motion.tr
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  custom={0}
+                  className="border-b border-zinc-700"
+                >
+                  <th className="text-left p-4 font-semibold text-white bg-[#0F172A]">
+                    Features
                   </th>
-                ))}
-              </motion.tr>
-            </thead>
-            <tbody className="block md:table-row-group">
-              {comparisonData.map((category, categoryIndex) => (
-                <React.Fragment key={category.category}>
-                  <motion.tr
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    custom={categoryIndex * 0.5 + 1}
-                    className="block md:table-row border-b border-zinc-700"
-                  >
-                    <td
-                      colSpan={5}
-                      className="block md:table-cell p-4 font-semibold text-white bg-[#1a1f2e] text-sm uppercase tracking-wide before:content-[attr(data-label)] before:font-semibold before:text-white"
-                      data-label={category.category}
+                  {pricingData.map((plan) => (
+                    <th
+                      key={plan.name}
+                      className="text-center p-4 font-semibold text-white bg-[#0F172A] min-w-[120px]"
                     >
-                      {category.category}
-                    </td>
-                  </motion.tr>
-                  {category.features.map((feature, featIndex) => (
+                      {plan.name}
+                    </th>
+                  ))}
+                </motion.tr>
+              </thead>
+              <tbody>
+                {comparisonData.map((category, categoryIndex) => (
+                  <React.Fragment key={category.category}>
                     <motion.tr
-                      key={`${category.category}-${featIndex}`}
                       variants={fadeUp}
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
-                      custom={categoryIndex * 0.5 + featIndex * 0.2 + 1.5}
-                      className="block md:table-row border-b border-zinc-700 hover:bg-[#1f2937] mb-4 md:mb-0"
+                      custom={categoryIndex * 0.5 + 1}
+                      className="border-b border-zinc-700"
                     >
                       <td
-                        className="block md:table-cell p-4 text-zinc-300 break-words overflow-hidden before:content-[attr(data-label)] before:font-semibold before:text-zinc-300 before:mr-2 md:before:content-none"
-                        data-label="Feature"
+                        colSpan={5}
+                        className="p-4 font-semibold text-white bg-[#1a1f2e] text-sm uppercase tracking-wide"
                       >
-                        {feature.name}
+                        {category.category}
                       </td>
-                      {["starter", "pro", "business", "enterprise"].map(
-                        (key, idx) => (
-                          <td
-                            key={key}
-                            className="block md:table-cell p-4 text-center before:content-[attr(data-label)] before:font-semibold before:text-zinc-300 before:mr-2 md:before:content-none flex md:table-cell items-center justify-between"
-                            data-label={pricingData[idx].name}
-                          >
-                            {typeof feature[key] === "boolean" ? (
-                              feature[key] ? (
-                                <Check
-                                  size={20}
-                                  className="text-[#7B68EE] mx-auto"
-                                />
-                              ) : (
-                                <X
-                                  size={20}
-                                  className="text-zinc-500 mx-auto"
-                                />
-                              )
-                            ) : (
-                              <span className="text-zinc-300 font-medium break-words overflow-hidden">
-                                {feature[key]}
-                              </span>
-                            )}
-                          </td>
-                        )
-                      )}
                     </motion.tr>
-                  ))}
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
+                    {category.features.map((feature, featIndex) => (
+                      <motion.tr
+                        key={`${category.category}-${featIndex}`}
+                        variants={fadeUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        custom={categoryIndex * 0.5 + featIndex * 0.2 + 1.5}
+                        className="border-b border-zinc-700 hover:bg-[#1f2937]"
+                      >
+                        <td className="p-4 text-zinc-300 break-words overflow-hidden">
+                          {feature.name}
+                        </td>
+                        {["starter", "pro", "business", "enterprise"].map(
+                          (key, idx) => (
+                            <td key={key} className="p-4 text-center">
+                              {typeof feature[key] === "boolean" ? (
+                                feature[key] ? (
+                                  <Check
+                                    size={20}
+                                    className="text-[#7B68EE] mx-auto"
+                                  />
+                                ) : (
+                                  <X
+                                    size={20}
+                                    className="text-zinc-500 mx-auto"
+                                  />
+                                )
+                              ) : (
+                                <span className="text-zinc-300 font-medium break-words overflow-hidden">
+                                  {feature[key]}
+                                </span>
+                              )}
+                            </td>
+                          )
+                        )}
+                      </motion.tr>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card Layout */}
+          <div className="md:hidden space-y-4">
+            {pricingData.map((plan, index) => {
+              const features = getPlanFeatures(plan.name);
+
+              return (
+                <motion.div
+                  key={plan.name}
+                  variants={fadeUp}
+                  custom={index}
+                  className="w-full"
+                >
+                  <Card className="bg-[#0F172A] border border-zinc-700 m-auto text-white max-w-[450px]">
+                    <CardHeader className="p-4 bg-gray-800">
+                      <CardTitle className="text-xl font-semibold text-white">
+                        {plan.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <ul className="space-y-2">
+                        {Object.entries(features).map(
+                          ([featureName, value]) => (
+                            <li
+                              key={featureName}
+                              className="flex items-center justify-between text-sm text-zinc-300"
+                            >
+                              <span className="break-words">{featureName}</span>
+                              {typeof value === "boolean" ? (
+                                <Check size={20} className="text-[#7B68EE]" />
+                              ) : (
+                                <span className="font-medium">{value}</span>
+                              )}
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
         </motion.div>
 
         <motion.div variants={fadeUp} className="text-center mt-16">
