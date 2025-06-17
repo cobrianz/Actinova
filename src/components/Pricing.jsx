@@ -63,9 +63,7 @@ export default function PricingSection() {
 
   return (
     <div className="bg-[#0D0F20] py-[3rem]">
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
+      <motion.section 
         viewport={{ once: true, amount: 0.2 }}
         className="px-4 py-[6rem] pt-[6rem] sm:pt-[4rem] xs:pt-[2rem] text-white bg-cover bg-center flex justify-center align-center"
       >
@@ -205,7 +203,7 @@ export default function PricingSection() {
 
             {/* Desktop Table Layout */}
             <div className="hidden md:block overflow-x-auto">
-              <table className="min-w-[800px] w-full border-collapse bg-[#0F172A] rounded-lg shadow-sm text-white">
+              <table className="min-w-[800px] w-full border-collapse overflow-hidden bg-[#0F172A] rounded-lg shadow-sm text-white">
                 <thead>
                   <motion.tr
                     variants={fadeUp}
