@@ -11,6 +11,13 @@
   background-blend-mode: overlay;
 }
 
+.color_div {
+  width: 50%;
+  height: 50%;
+  background: white;
+}
+
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -126,3 +133,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+

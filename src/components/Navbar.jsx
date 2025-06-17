@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full z-50">
+    <nav className="w-full z-50 fixed pt-[1.5rem] sm:pt-[2rem] lg:pt-[3rem]">
       {/* Top navigation bar */}
       <div
         className={`
