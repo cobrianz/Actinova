@@ -9,13 +9,21 @@ import { List, X, ArrowRight, Sparkle } from "@phosphor-icons/react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+
+    handleScroll();
+    handleResize();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const navItems = [
@@ -36,11 +44,7 @@ export default function Navbar() {
   };
 
   const mobileMenuVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.95,
-      y: -20,
-    },
+    hidden: { opacity: 0, scale: 0.95, y: -20 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -75,25 +79,26 @@ export default function Navbar() {
       initial="hidden"
       animate="visible"
     >
-      {/* Top navigation bar */}
       <motion.div
         className={`
           mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-4
           flex items-center justify-between rounded-2xl transition-all duration-500
           ${
-            scrolled
+            !isMobile && scrolled
               ? "bg-[#0F172A]/90 backdrop-blur-xl shadow-2xl border border-zinc-700/50"
-              : "md:bg-white/5 md:backdrop-blur-md md:shadow-lg md:border md:border-white/10"
+              : !isMobile
+              ? "md:bg-white/5 md:backdrop-blur-md md:shadow-lg md:border md:border-white/10"
+              : ""
           }
         `}
         animate={{
-          backgroundColor: scrolled
-            ? "rgba(15, 23, 42, 0.9)"
-            : "rgba(255, 255, 255, 0.05)",
+          backgroundColor:
+            !isMobile && scrolled
+              ? "rgba(15, 23, 42, 0.9)"
+              : "rgba(255, 255, 255, 0)",
         }}
         transition={{ duration: 0.3 }}
       >
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <motion.div
             className="relative"
@@ -114,7 +119,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop nav links */}
         <div className="hidden md:flex gap-8">
           {navItems.map((item, index) => (
             <motion.div
@@ -139,7 +143,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4">
           <Link
             href="/login"
@@ -161,22 +164,7 @@ export default function Navbar() {
           </motion.div>
         </div>
 
-        {/* Mobile CTA + Toggle (for >500px) */}
-        <div className="flex items-center gap-3 md:hidden max-[500px]:hidden">
-          <Link
-            href="/login"
-            className="text-white/90 hover:text-[#7B68EE] py-2 px-3 text-sm font-medium rounded-lg hover:bg-white/5 transition-all duration-300"
-          >
-            Login
-          </Link>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link
-              href="/signup"
-              className="bg-gradient-to-r from-[#7B68EE] to-[#9333EA] text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg hover:shadow-[#7B68EE]/25 transition-all duration-300"
-            >
-              Sign Up
-            </Link>
-          </motion.div>
+        <div className="flex items-center gap-3 md:hidden">
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
             className="text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
@@ -208,41 +196,8 @@ export default function Navbar() {
             </AnimatePresence>
           </motion.button>
         </div>
-
-        {/* Toggle only for ≤500px */}
-        <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden min-[501px]:hidden text-white focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-colors duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X size={24} weight="bold" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <List size={24} weight="bold" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.button>
       </motion.div>
 
-      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -253,10 +208,7 @@ export default function Navbar() {
             exit="exit"
           >
             <div className="bg-gradient-to-br from-[#0F172A] via-[#1e293b] to-[#0F172A] backdrop-blur-xl border border-zinc-700/50 rounded-2xl shadow-2xl overflow-hidden">
-              {/* Top Border */}
               <div className="h-0.5 bg-gradient-to-r from-[#7B68EE] to-[#9333EA]"></div>
-
-              {/* Navigation Items */}
               <div className="p-2">
                 {navItems.map((item, index) => (
                   <motion.div key={item.name} variants={mobileItemVariants}>
@@ -274,11 +226,9 @@ export default function Navbar() {
                   </motion.div>
                 ))}
               </div>
-
-              {/* Mobile CTA Section for ≤500px */}
               <motion.div
                 variants={mobileItemVariants}
-                className="px-4 pb-4 pt-2 border-t border-zinc-700/50 min-[501px]:hidden space-y-3"
+                className="px-4 pb-4 pt-2 border-t border-zinc-700/50 space-y-3"
               >
                 <Link
                   href="/login"
