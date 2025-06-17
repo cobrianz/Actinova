@@ -1,5 +1,3 @@
-// data/testimonialsData.js
-
 const testimonialsData = [
   {
     image: "avatar1.jpg",
