@@ -64,7 +64,7 @@ export default function PricingSection() {
   };
 
     return (
-      <div className="bg-[#0D0F20] pt-[3rem]">
+      <div className="bg-[#0D0F20] py-[3rem]">
         <Navbar />
 
         <motion.section

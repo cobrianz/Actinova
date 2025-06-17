@@ -13,7 +13,7 @@ export default function Navbar() {
       {/* Top navigation bar */}
       <div
         className={`
-          mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-4
+          mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-3
           flex items-center justify-between rounded-3xl
           md:bg-white/10 md:backdrop-blur-md md:shadow-md
         `}
