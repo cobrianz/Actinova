@@ -180,23 +180,6 @@ export default function FAQs() {
                               <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
                                 {faq.answer}
                               </p>
-
-                              {/* Decorative Element */}
-                              <div className="flex items-center gap-2 mt-4 pt-4 border-t border-zinc-700/30">
-                                <Sparkle size={14} className="text-[#7B68EE]" />
-                                <span className="text-xs text-zinc-500">
-                                  Was this helpful?
-                                </span>
-                                <div className="flex gap-2 ml-auto">
-                                  <button className="text-xs text-zinc-500 hover:text-[#7B68EE] transition-colors duration-300">
-                                    Yes
-                                  </button>
-                                  <span className="text-zinc-700">•</span>
-                                  <button className="text-xs text-zinc-500 hover:text-[#7B68EE] transition-colors duration-300">
-                                    No
-                                  </button>
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>

@@ -251,7 +251,7 @@ export default function Footer() {
 Actinova
               </p>
               <span className="hidden sm:block">•</span>
-              <p>© 2024 All rights reserved</p>
+              <p>© 2025 All rights reserved</p>
             </div>
 
             {/* Social Links */}

@@ -1,15 +1,15 @@
-import Navbar from '@/components/Navbar';
-import PricingSection from '@/components/Pricing'
-import TestimonialsSection from '@/components/TestimonialsSection'
+import Pricing from "@/components/Pricing";
+import ComparisonTable from "@/components/ComparisonTable";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 const PricingPage = () => {
   return (
     <div>
-      <Navbar />
-      <PricingSection />
+      <Pricing />
+      <ComparisonTable />
       <TestimonialsSection />
     </div>
   );
-}
+};
 
-export default PricingPage
+export default PricingPage;

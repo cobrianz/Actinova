@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, X, Sparkle, Star, ArrowRight } from "@phosphor-icons/react";
+import { Check, Star, ArrowRight, Sparkle } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,7 +16,6 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import pricingData from "../lib/pricingData";
-import comparisonData from "../lib/comparisonData";
 
 export default function PricingSection() {
   const [isYearly, setIsYearly] = useState(false);
@@ -35,22 +34,6 @@ export default function PricingSection() {
     const yearlyCost = plan.price.yearly;
     const savings = monthlyCost - yearlyCost;
     return savings > 0 ? savings : null;
-  };
-
-  const getPlanFeatures = (planName) => {
-    const features = {};
-    comparisonData.forEach((category) => {
-      category.features.forEach((feature) => {
-        const value = feature[planName.toLowerCase()];
-        if (
-          (typeof value === "boolean" && value === true) ||
-          (typeof value === "number" && value > 0)
-        ) {
-          features[feature.name] = value;
-        }
-      });
-    });
-    return features;
   };
 
   const containerVariants = {
@@ -90,8 +73,6 @@ export default function PricingSection() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#7B68EE]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#9333EA]/5 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#7B68EE]/3 to-transparent rounded-full"></div>
-
-        {/* Floating Particles */}
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
@@ -200,7 +181,6 @@ export default function PricingSection() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Background Glow */}
                 {isPopular && (
                   <div className="absolute inset-0 bg-gradient-to-br from-[#7B68EE]/20 via-[#9333EA]/10 to-[#7B68EE]/20 rounded-3xl blur-xl opacity-60"></div>
                 )}
@@ -212,12 +192,10 @@ export default function PricingSection() {
                       : "border-zinc-700/50 hover:border-[#7B68EE]/30"
                   }`}
                 >
-                  {/* Top Border Gradient */}
                   {isPopular && (
                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7B68EE] to-[#9333EA] rounded-t-lg"></div>
                   )}
 
-                  {/* Popular Badge */}
                   {isPopular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <Badge className="bg-gradient-to-r from-[#7B68EE] to-[#9333EA] text-white border-0 px-4 py-1 shadow-lg">
@@ -315,138 +293,6 @@ export default function PricingSection() {
             );
           })}
         </div>
-
-        {/* Feature Comparison Section */}
-        <motion.div variants={itemVariants} className="mt-20">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Compare all{" "}
-              <span className="bg-gradient-to-r from-[#7B68EE] to-[#9333EA] bg-clip-text text-transparent">
-                features
-              </span>
-            </h3>
-            <p className="text-lg text-zinc-300">
-              See exactly what's included in each plan
-            </p>
-          </div>
-
-          {/* Desktop Table */}
-          <div className="hidden md:block overflow-x-auto">
-            <div className="bg-gradient-to-br from-[#0F172A] via-[#1e293b] to-[#0F172A] border border-zinc-700/50 rounded-2xl overflow-hidden backdrop-blur-sm">
-              <table className="w-full text-white">
-                <thead>
-                  <tr className="border-b border-zinc-700/50">
-                    <th className="text-left p-6 font-semibold text-white bg-gradient-to-r from-[#0F172A] to-[#1e293b]">
-                      Features
-                    </th>
-                    {pricingData.map((plan) => (
-                      <th
-                        key={plan.name}
-                        className="text-center p-6 font-semibold text-white bg-gradient-to-r from-[#0F172A] to-[#1e293b] min-w-[120px]"
-                      >
-                        {plan.name}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonData.map((category, categoryIndex) => (
-                    <React.Fragment key={category.category}>
-                      <tr className="border-b border-zinc-700/50">
-                        <td
-                          colSpan={5}
-                          className="p-4 font-semibold text-[#7B68EE] bg-[#1a1f2e]/50 text-sm uppercase tracking-wide"
-                        >
-                          {category.category}
-                        </td>
-                      </tr>
-                      {category.features.map((feature, featIndex) => (
-                        <tr
-                          key={`${category.category}-${featIndex}`}
-                          className="border-b border-zinc-700/30 hover:bg-[#1f2937]/50 transition-colors duration-300"
-                        >
-                          <td className="p-4 text-zinc-300">{feature.name}</td>
-                          {["starter", "pro", "business", "enterprise"].map(
-                            (key) => (
-                              <td key={key} className="p-4 text-center">
-                                {typeof feature[key] === "boolean" ? (
-                                  feature[key] ? (
-                                    <Check
-                                      size={20}
-                                      className="text-[#7B68EE] mx-auto"
-                                    />
-                                  ) : (
-                                    <X
-                                      size={20}
-                                      className="text-zinc-500 mx-auto"
-                                    />
-                                  )
-                                ) : (
-                                  <span className="text-zinc-300 font-medium">
-                                    {feature[key]}
-                                  </span>
-                                )}
-                              </td>
-                            )
-                          )}
-                        </tr>
-                      ))}
-                    </React.Fragment>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Mobile Cards */}
-          <div className="md:hidden space-y-6">
-            {pricingData.map((plan, index) => {
-              const features = getPlanFeatures(plan.name);
-
-              return (
-                <motion.div
-                  key={plan.name}
-                  variants={itemVariants}
-                  custom={index}
-                >
-                  <Card className="bg-gradient-to-br from-[#0F172A] via-[#1e293b] to-[#0F172A] border border-zinc-700/50 text-white">
-                    <CardHeader className="p-4 bg-gradient-to-r from-[#1a1f2e] to-[#0F172A] border-b border-zinc-700/50">
-                      <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
-                        <Star
-                          size={16}
-                          className="text-[#7B68EE]"
-                          weight="fill"
-                        />
-                        {plan.name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-4">
-                      <ul className="space-y-3">
-                        {Object.entries(features).map(
-                          ([featureName, value]) => (
-                            <li
-                              key={featureName}
-                              className="flex items-center justify-between text-sm text-zinc-300"
-                            >
-                              <span>{featureName}</span>
-                              {typeof value === "boolean" ? (
-                                <Check size={18} className="text-[#7B68EE]" />
-                              ) : (
-                                <span className="font-medium text-white">
-                                  {value}
-                                </span>
-                              )}
-                            </li>
-                          )
-                        )}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
 
         {/* Bottom CTA */}
         <motion.div variants={itemVariants} className="text-center mt-16">
