@@ -1,42 +1,44 @@
-"use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo } from "react";
-import { Search, ArrowUp, FileText, Scale, Shield } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { termsData } from "../lib/termsData";
+
+
+"use client"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState, useMemo } from "react"
+import { Search, ArrowUp, FileText, Scale, Shield } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { termsData } from "../lib/termsData"
 
 const TermsOfService = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("")
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   // Filter terms based on search query
   const filteredTerms = useMemo(() => {
-    if (!searchQuery.trim()) return termsData;
+    if (!searchQuery.trim()) return termsData
 
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase()
     return termsData.filter(
       (term) =>
         term.title.toLowerCase().includes(query) ||
-        term.content.some((content) => content.toLowerCase().includes(query))
-    );
-  }, [searchQuery]);
+        term.content.some((content) => content.toLowerCase().includes(query)),
+    )
+  }, [searchQuery])
 
   // Handle scroll to top
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   // Handle scroll detection for scroll-to-top button
   const handleScroll = () => {
-    setShowScrollTop(window.scrollY > 400);
-  };
+    setShowScrollTop(window.scrollY > 400)
+  }
 
   // Add scroll listener
   useState(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  })
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,7 +49,7 @@ const TermsOfService = () => {
         staggerChildren: 0.1,
       },
     },
-  };
+  }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -56,7 +58,7 @@ const TermsOfService = () => {
       y: 0,
       transition: { duration: 0.6, ease: "easeOut" },
     },
-  };
+  }
 
   const floatingVariants = {
     animate: {
@@ -68,10 +70,10 @@ const TermsOfService = () => {
         ease: "easeInOut",
       },
     },
-  };
+  }
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-[#0a0b1a] via-[#0d0f20] to-[#1a0b2e] text-white min-h-screen">
+    <div className="relative pt-[8rem]  w-full bg-gradient-to-br from-[#0a0b1a] via-[#0d0f20] to-[#1a0b2e] text-white min-h-screen">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Gradient Orbs */}
@@ -80,11 +82,7 @@ const TermsOfService = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#7B68EE]/5 to-transparent rounded-full"></div>
 
         {/* Floating Icons */}
-        <motion.div
-          variants={floatingVariants}
-          animate="animate"
-          className="absolute top-20 left-10 text-[#7B68EE]/30"
-        >
+        <motion.div variants={floatingVariants} animate="animate" className="absolute top-20 left-10 text-[#7B68EE]/30">
           <Scale size={32} />
         </motion.div>
         <motion.div
@@ -130,10 +128,8 @@ const TermsOfService = () => {
               backgroundColor: "rgba(123, 104, 238, 0.15)",
             }}
           >
-            <Scale size={16} weight="fill" className="text-[#7B68EE]" />
-            <span className="text-sm font-medium text-[#7B68EE]">
-              Legal Documentation
-            </span>
+            <Scale size={16} className="text-[#7B68EE]" />
+            <span className="text-sm font-medium text-[#7B68EE]">Legal Documentation</span>
           </motion.div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
@@ -158,22 +154,18 @@ const TermsOfService = () => {
 
           <p className="text-xl text-zinc-300 max-w-3xl mx-auto leading-relaxed mb-8">
             Please read these terms carefully before using{" "}
-            <span className="text-white font-semibold">
-              Actinova's services
-            </span>
-            . These terms govern your access to and use of our platform.
+            <span className="text-white font-semibold">Actinova's services</span>. These terms govern your access to and
+            use of our platform.
           </p>
 
-          <div className="text-sm text-zinc-400 mb-8">
-            Last Updated: December 18, 2024
-          </div>
+          <div className="text-sm text-zinc-400 mb-8">Last Updated: December 18, 2024</div>
         </motion.div>
 
         {/* Search Bar */}
         <motion.div variants={itemVariants} className="mb-12">
           <div className="relative max-w-2xl mx-auto">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-zinc-400" />
+              <Search className="h-5 w-5 text-zinc-500 z-100" />
             </div>
             <Input
               type="text"
@@ -200,8 +192,7 @@ const TermsOfService = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mt-4 text-zinc-400"
             >
-              Found {filteredTerms.length} section
-              {filteredTerms.length !== 1 ? "s" : ""} matching "{searchQuery}"
+              Found {filteredTerms.length} section{filteredTerms.length !== 1 ? "s" : ""} matching "{searchQuery}"
             </motion.div>
           )}
         </motion.div>
@@ -240,7 +231,7 @@ const TermsOfService = () => {
                               __html: searchQuery
                                 ? content.replace(
                                     new RegExp(`(${searchQuery})`, "gi"),
-                                    '<mark class="bg-[#7B68EE]/30 text-white rounded px-1">$1</mark>'
+                                    '<mark class="bg-[#7B68EE]/30 text-white rounded px-1">$1</mark>',
                                   )
                                 : content,
                             }}
@@ -260,12 +251,8 @@ const TermsOfService = () => {
                 className="text-center py-12"
               >
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  No results found
-                </h3>
-                <p className="text-zinc-400 mb-6">
-                  Try adjusting your search terms or browse all sections below.
-                </p>
+                <h3 className="text-xl font-semibold text-white mb-2">No results found</h3>
+                <p className="text-zinc-400 mb-6">Try adjusting your search terms or browse all sections below.</p>
                 <Button
                   onClick={() => setSearchQuery("")}
                   className="bg-gradient-to-r from-[#7B68EE] to-[#9333EA] hover:from-[#6B58DE] hover:to-[#8323D9] text-white"
@@ -278,10 +265,7 @@ const TermsOfService = () => {
         </motion.div>
 
         {/* Footer */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-16 pt-8 border-t border-[#7B68EE]/20 text-center"
-        >
+        <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-[#7B68EE]/20 text-center">
           <p className="text-zinc-400 mb-4">
             Questions about these terms? Contact us at{" "}
             <a
@@ -316,7 +300,7 @@ const TermsOfService = () => {
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
-export default TermsOfService;
+export default TermsOfService
