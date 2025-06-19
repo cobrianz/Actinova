@@ -121,19 +121,19 @@ export default function FAQs() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {/* Background Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#7B68EE]/5 via-[#9333EA]/5 to-[#7B68EE]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+                <div className="absolute inset-0  rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
 
-                <div className="relative bg-gradient-to-br from-[#0F172A] via-[#1e293b] to-[#0F172A] border border-zinc-700/50 rounded-2xl overflow-hidden backdrop-blur-sm group-hover:border-[#7B68EE]/30 transition-all duration-300">
+                <div className="relative  border border-zinc-700/50 rounded-2xl overflow-hidden backdrop-blur-sm group-hover:border-[#7B68EE]/30   transition-all duration-300">
                   {/* Top Border Gradient */}
                   <div
-                    className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#7B68EE] to-transparent transition-opacity duration-300 ${
+                    className={`absolute top-0 left-0 right-0  h-0.5 bg-gradient-to-r from-transparent via-[#7B68EE] to-transparent transition-opacity  duration-300 ${
                       isOpen ? "opacity-100" : "opacity-0"
                     }`}
                   ></div>
 
                   {/* Question */}
                   <motion.div
-                    className="flex items-center justify-between p-6 cursor-pointer"
+                    className="flex items-center justify-between p-4 cursor-pointer"
                     onClick={() => toggle(index)}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -153,7 +153,7 @@ export default function FAQs() {
 
                     {/* Caret Icon */}
                     <motion.div
-                      className="flex-shrink-0 w-10 h-10 bg-zinc-800/50 border border-zinc-600 rounded-full flex items-center justify-center group-hover:bg-[#7B68EE]/10 group-hover:border-[#7B68EE]/30 transition-all duration-300"
+                      className="flex-shrink-0 w-8 h-8 bg-zinc-800/50 border border-zinc-600 rounded-full flex items-center justify-center group-hover:bg-[#7B68EE]/10 group-hover:border-[#7B68EE]/30 transition-all duration-300"
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
@@ -176,7 +176,7 @@ export default function FAQs() {
                       >
                         <div className="px-6 pb-6">
                           <div className="pl-12 pr-4">
-                            <div className="bg-[#1a1f2e]/50 border border-zinc-700/30 rounded-xl p-4">
+                            <div>
                               <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
                                 {faq.answer}
                               </p>
