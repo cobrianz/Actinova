@@ -160,10 +160,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "Services", href: "/services" },
-                { name: "Testimonials", href: "/testimonials" },
-                { name: "Highlights", href: "/highlights" },
+                { name: "Contact", href: "/contact" },
                 { name: "Pricing", href: "/pricing" },
-                { name: "FAQs", href: "/faq" },
+                { name: "Home", href: "/" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -188,7 +187,6 @@ export default function Footer() {
               {[
                 { name: "About us", href: "/about" },
                 { name: "Careers", href: "/careers" },
-                { name: "Press", href: "/press" },
                 { name: "Blog", href: "/blog" },
               ].map((item) => (
                 <li key={item.name}>
@@ -217,7 +215,6 @@ export default function Footer() {
                 { name: "Terms of Service", href: "/terms" },
                 { name: "Privacy Policy", href: "/privacy" },
                 { name: "Contact Support", href: "/contact" },
-                { name: "Documentation", href: "/docs" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
