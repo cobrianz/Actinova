@@ -60,10 +60,7 @@ export default function LoginPage() {
           }}
         ></div>
       </div>
-
-      <div className="relative z-10 w-full">
         <LoginSection />
-      </div>
     </main>
   )
 }

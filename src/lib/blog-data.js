@@ -10,7 +10,7 @@ export const blogData = [
     readTime: "8 min read",
     category: "Backend Development",
     tags: ["Node.js", "Express", "API", "JavaScript"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog1.jpg",
     featured: true,
   },
   {
@@ -24,7 +24,7 @@ export const blogData = [
     readTime: "12 min read",
     category: "Frontend Development",
     tags: ["React", "Performance", "Optimization", "JavaScript"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog2.png",
     featured: false,
   },
   {
@@ -38,7 +38,7 @@ export const blogData = [
     readTime: "10 min read",
     category: "Database",
     tags: ["Database", "SQL", "NoSQL", "Design Patterns"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog3.jpg",
     featured: true,
   },
   {
@@ -52,7 +52,7 @@ export const blogData = [
     readTime: "15 min read",
     category: "Architecture",
     tags: ["Microservices", "Architecture", "Scalability", "DevOps"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog1.jpg",
     featured: false,
   },
   {
@@ -66,7 +66,7 @@ export const blogData = [
     readTime: "11 min read",
     category: "Security",
     tags: ["Security", "Authentication", "JWT", "OAuth"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog2.png",
     featured: false,
   },
   {
@@ -80,7 +80,7 @@ export const blogData = [
     readTime: "9 min read",
     category: "DevOps",
     tags: ["DevOps", "CI/CD", "Infrastructure", "Automation"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog3.jpg",
     featured: false,
   },
   {
@@ -94,7 +94,7 @@ export const blogData = [
     readTime: "14 min read",
     category: "Machine Learning",
     tags: ["Machine Learning", "AI", "API", "Production"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog1.jpg",
     featured: true,
   },
   {
@@ -108,7 +108,7 @@ export const blogData = [
     readTime: "7 min read",
     category: "API Design",
     tags: ["GraphQL", "REST", "API", "Architecture"],
-    image: "/placeholder.svg?height=400&width=600",
+    image: "blog2.png",
     featured: false,
   },
 ];

@@ -60,10 +60,7 @@ export default function SignupPage() {
           }}
         ></div>
       </div>
-
-      <div className="relative z-10 w-full">
         <SignupSection />
-      </div>
     </main>
   );
 }
