@@ -20,6 +20,8 @@ const icons = {
   MagicWand: MagicWand,
   Brain: Brain,
   ShieldCheck: ShieldCheck,
+  Sparkle: Sparkle,
+  Star: Star,
 };
 
 export default function Highlights() {
@@ -56,6 +58,15 @@ export default function Highlights() {
     },
   };
 
+  // Deterministic particle data
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    left: `${(i * 5) % 100}%`,
+    top: `${(i * 10) % 100}%`,
+    duration: 3 + (i % 2),
+    delay: i * 0.2,
+  }));
+
   return (
     <section className="bg-gradient-to-br from-[#0a0b1a] via-[#0d0f20] to-[#1a0b2e] text-white py-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background Elements */}
@@ -65,22 +76,22 @@ export default function Highlights() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#7B68EE]/3 to-transparent rounded-full"></div>
 
         {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
+        {particles.map((particle) => (
           <motion.div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 bg-[#7B68EE]/30 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: particle.left,
+              top: particle.top,
             }}
             animate={{
               y: [-20, 20, -20],
               opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: particle.duration,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
+              delay: particle.delay,
             }}
           />
         ))}
@@ -121,7 +132,7 @@ export default function Highlights() {
         {/* Highlights Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {highlightData.map((item, index) => {
-            const IconComponent = icons[item.icon];
+            const IconComponent = icons[item.icon] || Lightning; // Fallback to Lightning if icon is undefined
 
             return (
               <motion.div

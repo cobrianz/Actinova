@@ -1,8 +1,8 @@
 
 import Services from '@/components/Services';
-import Hero from './../components/Hero';
+import Hero from '@/components/Hero';
 import FAQs from '@/components/FAQs';
-import Highlights from './../components/Highlights';
+import Highlights from '@/components/Highlights';
 export default function Home() {
   return (
     <main>
