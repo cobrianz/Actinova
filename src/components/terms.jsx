@@ -1,8 +1,6 @@
-
-
 "use client"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Search, ArrowUp, FileText, Scale, Shield } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -35,10 +33,10 @@ const TermsOfService = () => {
   }
 
   // Add scroll listener
-  useState(() => {
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  })
+  }, [])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,7 +71,7 @@ const TermsOfService = () => {
   }
 
   return (
-    <div className="relative pt-[8rem]  w-full bg-gradient-to-br from-[#0a0b1a] via-[#0d0f20] to-[#1a0b2e] text-white min-h-screen">
+    <div className="relative pt-[8rem] w-full bg-gradient-to-br from-[#0a0b1a] via-[#0d0f20] to-[#1a0b2e] text-white min-h-screen">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Gradient Orbs */}
