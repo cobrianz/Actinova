@@ -12,7 +12,7 @@ const TermsOfService = () => {
 
   // Filter terms based on search query
   const filteredTerms = useMemo(() => {
-    if (!searchQuery.trim()) return termsDataa
+    if (!searchQuery.trim()) return termsData
 
     const query = searchQuery.toLowerCase()
     return termsData.filter(
